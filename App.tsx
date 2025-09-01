@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { SafeAreaView, FlatList, StyleSheet, StatusBar, TextInput, Image, Text, Button } from 'react-native';
-import { cars, Car } from './data/cars';
-import CarCard from './components/CarCard';
-import CarDetails from './components/CarDetails';
+import { CarCard } from './components/CarCard';	
+import { CarDetails } from './components/CarDetails';
+import { Car, cars } from './data/cars';
 
 const App: React.FC = () => {
 const [selectedCar, setSelectedCar] = useState<Car | null>(null);
@@ -34,7 +34,7 @@ const handleCloseModal = () => {
    <Text>Details</Text>
    <Button title="Details of car" onPress={() => alert('Details of car')} />
 	  <FlatList 
-		data={cars.filter(car =>
+		data={cars.filter((car: { name: string; }) =>
 		  car.name.toLowerCase().includes(searchText.toLowerCase())
 		)}
 		keyExtractor={(item) => item.id.toString()}
